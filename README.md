@@ -1,5 +1,47 @@
 # Cataclysm: Bright Nights
 
+> This fork represents my effort to port Cataclysm: Bright Nights (a C++ codebase) to use the Zig build system. It's definitely a work-in-progress. I haven't yet triedsetting it up for platforms aside from `x86_64-linux` - but I plan to.
+>
+> See `build.zig` for the implementation details.
+
+How to use it to compile and run with the Zig toolchain (by default, builds curses version):
+
+```
+$ zig build run
+```
+
+To build and run with SDL graphics and sound, and using XDG directory structure for data, and speed-optimized binary:
+
+```
+$ zig build -Dgraphics=tiles -Dsound=true -Dsave_dir=xdg -Doptimize=ReleaseFast
+```
+
+A more exhaustive list of build options.
+
+```
+Build Options:
+  -Dgraphics=[enum]            Build curses or tiles version.
+                                 Supported Values:
+                                   curses
+                                   tiles
+  -Dsound=[bool]               Support for in-game sounds & music.
+  -Dbacktrace=[bool]           Support for printing stack backtraces on crash.
+  -Dlibbacktrace=[bool]        Print backtrace with libbacktrace.
+  -Dsave_dir=[enum]            Directory to use for save and config files.
+                                 Supported Values:
+                                   xdg
+                                   home
+  -Dtarget=[string]            The CPU architecture, OS, and ABI to build for
+  -Dcpu=[string]               Target CPU features to add or subtract
+  -Dofmt=[string]              Target object format
+  -Ddynamic-linker=[string]    Path to interpreter on the target system
+  -Doptimize=[enum]            Prioritize performance, safety, or binary size
+                                 Supported Values:
+                                   Debug
+                                   ReleaseSafe
+                                   ReleaseFast
+                                   ReleaseSmall
+
 <header align="center">
   <a><img src="doc/src/content/docs/en/contribute/img/readme-title.png" title="screenshots of (clockwise from upper-right: Chaosvolt (x2), ExecutorBill, scarf005"></a>
 
@@ -169,3 +211,4 @@ It will open a bug report on browser with `Version and configuration` filled in.
 - Please submit an issue on
   [our GitHub page](https://github.com/cataclysmbnteam/Cataclysm-BN/issues/) using
   [feature request form](https://github.com/cataclysmbnteam/Cataclysm-BN/issues/new?template=feature_request.yml).
+```

@@ -7,9 +7,10 @@
 *.o
 *.tmp
 *.zip
+.zig-cache
+/zig-out/
 /WinDepend/
 /bindist/
-build.*
 build
 !build-scripts
 !build-data
